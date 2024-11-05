@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="./resources/ol.css">
+        <link rel="stylesheet" href="resources/fontawesome-all.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/horsey.min.css">
+        <link rel="stylesheet" type="text/css" href="resources/ol3-search-layer.min.css">
+        <link rel="stylesheet" href="./resources/ol-layerswitcher.css">
+        <link rel="stylesheet" href="./resources/qgis2web.css">
+
+        <style>
+        /* Main container for responsive layout */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        /* Styles for landscape mode */
+        @media (max-width: 768px) and (orientation: landscape) {
+            #map {
+                width: 100%;
+                height: 100vh;
+            }
+        }
+
+        /* Styles for portrait mode */
+        @media (max-width: 768px) and (orientation: portrait) {
+            #rotate-notification {
+                display: flex;
+            }
+            #map {
+                display: none;
+            }
+        }
+
+        /* Notification for portrait orientation */
+        #rotate-notification {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #333;
+            color: #fff;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            z-index: 1000;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* General styles */
+        html, body {
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .ol-control button {
+            background-color: #f8f8f8 !important;
+            color: #000000 !important;
+            border-radius: 0px !important;
+        }
+        .ol-zoom, .geolocate, .gcd-gl-control .ol-control {
+            background-color: rgba(255,255,255,.4) !important;
+            padding: 3px !important;
+        }
+        .ol-scale-line {
+            background: none !important;
+        }
+        .ol-scale-line-inner {
+            border: 2px solid #f8f8f8 !important;
+            border-top: none !important;
+            background: rgba(255, 255, 255, 0.5) !important;
+            color: black !important;
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+            position: relative;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 4px;
+            color: white;
+            padding: 4px 8px;
+            opacity: 0.7;
+            white-space: nowrap;
+        }
+        .tooltip-measure {
+            opacity: 1;
+            font-weight: bold;
+        }
+        .tooltip-static {
+            background-color: #ffcc33;
+            color: black;
+            border: 1px solid white;
+        }
+        .tooltip-measure:before,
+        .tooltip-static:before {
+            border-top: 6px solid rgba(0, 0, 0, 0.5);
+            border-right: 6px solid transparent;
+            border-left: 6px solid transparent;
+            content: "";
+            position: absolute;
+            bottom: -6px;
+            margin-left: -7px;
+            left: 50%;
+        }
+        .tooltip-static:before {
+            border-top-color: #ffcc33;
+        }
+        .measure-control {
+            top: 65px;
+            left: .5em;
+            display: flex;
+        }
+        .ol-touch .measure-control {
+            top: 80px;
+        }
+        .measure-control label {
+            padding: 1px;
+            padding-right: 4px;
+        }
+
+        /* Map container styling */
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+        </style>
+
+        <title>Responsive GIS Web App</title>
+    </head>
+    <body>
+        <!-- Rotate notification for portrait mode -->
+        <div id="rotate-notification">
+            Please rotate your device to landscape mode for the best viewing experience.
+        </div>
+
+        <div class="container">
+            <div id="map">
+                <div id="popup" class="ol-popup">
+                    <a href="#" id="popup-closer" class="ol-popup-closer"></a>
+                    <div id="popup-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/qgis2web_expressions.js"></script>
+        <script src="resources/polyfills.js"></script>
+        <script src="./resources/functions.js"></script>
+        <script src="./resources/ol.js"></script>
+        <script src="http://cdn.polyfill.io/v2/polyfill.min.js?features=Element.prototype.classList,URL"></script>
+        <script src="resources/horsey.min.js"></script>
+        <script src="resources/ol3-search-layer.js"></script>
+        <script src="./resources/ol-layerswitcher.js"></script>
+        <script src="layers/VictoriaCounty_3.js"></script>
+        <script src="layers/StPatrickCounty_4.js"></script>
+        <script src="layers/ElectoralDistricts_5.js"></script>
+        <script src="layers/Roads_6.js"></script>
+        <script src="styles/VictoriaCounty_3_style.js"></script>
+        <script src="styles/StPatrickCounty_4_style.js"></script>
+        <script src="styles/ElectoralDistricts_5_style.js"></script>
+        <script src="styles/Roads_6_style.js"></script>
+        <script src="./layers/layers.js" type="text/javascript"></script> 
+        <script src="./resources/Autolinker.min.js"></script>
+        <script src="./resources/qgis2web.js"></script>
+    </body>
+</html>
